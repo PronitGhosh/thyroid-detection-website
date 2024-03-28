@@ -1,0 +1,367 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thyroid detection</title>
+    
+    <style>
+        body
+        {
+          margin:0px;
+          padding:0px;
+          background-image:url("{% static 'detection\\images\\background.jpg'%}");
+          background-repeat:no-repeat;
+          background-size:cover;
+
+        }
+       .main
+        {
+        color:white;
+        position : absolute;
+        left:400px;
+         align-items: center;
+        background-color:green;
+        border-radius:50px;
+        border-top: 500px;
+        width: 800px;
+        height:450px;
+        }
+        .main1
+        {
+            position : fixed;
+            top:150px;
+            left :400px;
+        }
+        .main2
+        {
+            position:absolute;
+            top:160px;
+            right: 550px;
+        }
+        .hidden
+        {
+            display:none;
+        }
+        #FTIform
+        {
+          position:absolute;
+          top: 210px;
+          left:170px;
+        }
+        #T4Uform
+        {
+            position:absolute;
+            top:180px;
+            left:170px;
+        }
+        #TT4form
+        {
+            position:absolute;
+            top:150px;
+            left:170px;
+        }
+        #T3form
+        {
+            position:absolute;
+            top:120px;
+            left:180px;
+        }
+        #TSHform
+        {
+            position:absolute;
+            top:90px;
+            left:170px;
+        }
+        .main3
+        {
+            position:absolute;
+            top:390px;
+            left:700px;
+            cursor:pointer;
+        }
+        .main4
+        {
+            position:fixed;
+            top:430px;
+            left:650px; 
+            font-size:24px;  
+        }
+        input[type=submit]
+        {
+            background-color:blue;
+            border:2px;
+            color:white;
+            padding : 8px 16px;
+            cursor:pointer;
+        }
+     </style>
+        <script>
+            
+            function showPregnentForm(selectedGender){
+                var gender=selectedGender.value;
+                var pregform =document.getElementById("pregform");
+                if(gender==="Female")
+                {
+                    pregform.classList.remove("hidden");
+                }
+                else
+                {
+                    pregform.classList.add("hidden");
+                }
+            }
+            function showTSH(selectedTSH)
+            {
+                var a=selectedTSH.value;
+                var b=document.getElementById("TSHform");
+                if(a==="False")
+                {
+                    b.classList.add("hidden");
+                }
+                else
+                {
+                  b.classList.remove("hidden");
+                }
+            }
+            function showT3(selectedT3)
+            {
+                var a=selectedT3.value;
+                var b=document.getElementById("T3form");
+                if(a==="True")
+                {
+                    b.classList.remove("hidden");
+                }
+                else
+                {
+                    b.classList.add("hidden");
+                }
+
+            }
+            function showTT4(selectedTT4)
+            {
+                var a=selectedTT4.value;
+                var b=document.getElementById("TT4form");
+                if(a==="True")
+                {
+                    b.classList.remove("hidden");
+                }
+                else
+                {
+                    b.classList.add("hidden");
+                }
+
+            }
+            function showT4U(selectedT4U)
+            {
+                var a=selectedT4U.value;
+                var b=document.getElementById("T4Uform");
+                if(a==="True")
+                {
+                    b.classList.remove("hidden");
+                }
+                else
+                {
+                    b.classList.add("hidden");
+                }
+
+            }
+            function showFTI(selectedFTI)
+            {
+                var a=selectedFTI.value;
+                var b=document.getElementById("FTIform");
+                if(a==="True")
+                {
+                    b.classList.remove("hidden");
+                    
+                }
+                else
+                {
+                    b.classList.add("hidden");
+                }
+
+            }
+           </script>
+  
+</head>
+<body>
+    <div align="center">
+        <h1>
+            WELCOME TO THYROID DETECTION SYSTEM
+        </h1>
+    </div>
+    <div align="center" class="main" >
+    <h1>
+        Please Enter the folowing Information
+    </h1> 
+    </div>
+    <div  class="main1">
+        <p>
+            <form method="get" action="{% url 'result' %}">
+        <table>
+            <tr>
+                <td align="right">Age :</td>
+                <td align="left"><input type="number" name="n1"></td>
+            </tr>
+            <tr>  
+                <td align="right">Gender :</td>
+                <td align="left"><select name="n2" onchange="showPregnentForm(this)">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option></select></td>
+            </tr>
+            <tr>  
+                <td align="right">on thyroxine:</td>
+                <td align="left"><select name="n3">
+                    <option value="True">True</option>
+                    <option value="False">False</option></select></td>
+            </tr>
+            <tr>
+                <td align="right">query on thyroxine:</td>
+                <td align="left"><select name="n4">
+                    <option value="True">True</option>
+                    <option value="False">False</option></select></td>
+                </tr>
+                <tr>
+                    <td align="right">on antithyroid medication:</td>
+                    <td align="left"><select name="n5">
+                        <option value="True">True</option>
+                        <option value="False">False</option></select></td>
+                    </tr>
+                    <tr>
+                        <td align="right">sick:</td>
+                        <td align="left"><select name="n6">
+                            <option value="True">True</option>
+                            <option value="False">False</option></select></td>
+                        </tr>
+                        <tr class="hidden" id="pregform">
+                            <td align="right" >pregnant:</td>
+                            <td align="left"><select name="n7">
+                                <option value="True">True</option>
+                                <option value="False">False</option></select></td>
+                            </tr>
+                            <tr>
+                                <td align="right">thyroid surgery:</td>
+                                <td align="left"><select name="n8">
+                                    <option value="True">True</option>
+                                    <option value="False">False</option></select></td>
+                            </tr>
+                            <tr>
+                                <td align="right">I131 treatment:</td>
+                                <td align="left"><select name="n9">
+                                    <option value="True">True</option>
+                                    <option value="False">False</option></select></td>
+                                </tr>
+                                <tr>
+                                    <td align="right">query hypothyroid:</td>
+                                    <td align="left"><select name="n10">
+                                        <option value="True">True</option>
+                                        <option value="False">False</option></select></td>
+                                    </tr>
+                                <tr>
+                                        <td align="right">query hyperthyroid:</td>
+                                        <td align="left"><select name="n11">
+                                            <option value="True">True</option>
+                                            <option value="False">False</option></select></td> 
+                                    </tr>
+                </table> 
+                </div>
+                <div class="main2">
+                  <table>
+                    <tr>
+                        <td align="right">lithium:</td>
+                                        <td align="left"><select name="n12">
+                                            <option value="True">True</option>
+                                            <option value="False">False</option></select></td>
+                    </tr>
+                    <tr>
+                        <td align="right">goitre:</td>
+                        <td align="left"><select name="n13">
+                            <option value="True">True</option>
+                            <option value="False">False</option></select></td>  
+                    </tr>
+                    <tr>
+                        <td align="right">tumor:</td>
+                                        <td align="left"><select name="n14">
+                                            <option value="True">True</option>
+                                            <option value="False">False</option></select></td>
+                    </tr>
+                    <tr>
+                        <td align="right">hypopituitary:</td>
+                                        <td align="left"><select name="n15">
+                                            <option value="True">True</option>
+                                            <option value="False">False</option></select></td>
+                    </tr>
+                    <tr>
+                        <td align="right">pysch:</td>
+                                        <td align="left"><select name="n16">
+                                            <option value="True">True</option>
+                                            <option value="False">False</option></select></td>
+                    </tr>
+                    <tr>
+                        <td align="right">TSH measured:</td>
+                                        <td align="left"><select name="n17" onchange="showTSH(this)">
+                                            <option value="False">False</option>
+                                            <option value="True">True</option></select></td>
+                    </tr>
+                    <tr class="hidden" id="TSHform">
+                        <td align="right">TSH:</td>
+                                        <td align="left"><input type="number" step="any" name="n18"></td>
+                    </tr>
+                    <tr >
+                        <td align="right">T3 measured:</td>
+                                        <td align="left"><select name="n19" onchange="showT3(this)">
+                                            <option value="False">False</option>
+                                            <option value="True">True</option></select></td>
+                    </tr>
+                    <tr class="hidden" id="T3form">
+                        <td align="right">T3:</td>
+                                        <td align="left"><input type="number" step="any" name="n20"></td>
+                    </tr>
+                    <tr >
+                        <td align="right">TT4 measured:</td>
+                                        <td align="left"><select name="n21" onchange="showTT4(this)">
+                                            <option value="False">False</option>
+                                            <option value="True">True</option></select></td>
+                    </tr>
+                    <tr class="hidden" id="TT4form">
+                        <td align="right">TT4:</td>
+                                        <td align="left"><input type="number" step="any" name="n22"></td>
+                    </tr>
+                    <tr >
+                        <td align="right">T4U measured:</td>
+                                        <td align="left"><select name="n23" onchange="showT4U(this)">
+                                            <option value="False">False</option>
+                                            <option value="True">True</option></select></td>
+                    </tr>
+                    <tr class="hidden" id="T4Uform">
+                        <td align="right">T4U:</td>
+                                        <td align="left"><input type="number" step="any" name="n24"></td>
+                    </tr>
+                    <tr >
+                        <td align="right">FTI measured:</td>
+                                        <td align="left"><select name="n25" onchange="showFTI(this)">
+                                            <option value="False">False</option>
+                                            <option value="True">True</option></select></td>
+                    </tr>
+                    <tr class="hidden" id="FTIform">
+                        <td align="right">FTI:</td>
+                                        <td align="left"><input type="number" step="any" name="n26"></td>
+                    </tr>
+
+                  </table>  
+                  
+                </div>
+                <div align="center" class="main3">
+                <input type="submit">
+                </div>
+            
+           </form>
+           <div align="center"class="main4" >
+            <p>
+            Result:{{result2}}
+            </p>
+        </div>
+        </p>
+    </div>
+</body>
+</html>
